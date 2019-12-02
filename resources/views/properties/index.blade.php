@@ -13,10 +13,12 @@
             @foreach($properties as $property)
             <tr>
                 <td>{{ $property -> property_name }}</td>
-                <td></td>
+                <td><a href="{{ route('owned_properties.show', $property -> id) }}">修繕一覧</a></td>
             </tr>
             @endforeach
+            
         </table>
+        
     </div>
 </div>
 

@@ -22,5 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>['auth']],function(){
     Route::resource('users','UsersController');
 
-    Route::resource('owned_properties','PropertiesController',['only'=>['index','create','store']]);
+    Route::resource('owned_properties','PropertiesController',['only'=>['index','show','create','store']]);
+    
+    Route::get('repairs/{id}/create','RepairsController@repair_create')->name('repairs.create');
+    Route::post('repairs/properties/{id}/','RepairsController@repair_store')->name('repairs.store');
+    
 });

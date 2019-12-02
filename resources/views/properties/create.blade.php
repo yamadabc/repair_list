@@ -6,7 +6,7 @@
     <div class='row'>
         <div class='col-md-8 offset-md-2'>
             <h2>物件入力</h2>
-            {!! Form::open(['route'=>'owned_properties.store']) !!}
+            {!! Form::open(['route'=>'repairs.store']) !!}
             @csrf
             <div class='form-group'>
             
