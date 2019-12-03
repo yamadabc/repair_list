@@ -27,5 +27,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('repairs/{id}/create','RepairsController@repair_create')->name('repairs.create');
     Route::post('repairs/properties/{id}/','RepairsController@repair_store')->name('repairs.store');
     Route::post('/properties/{id}/approval','RepairsController@approval_store')->name('approval.store');
+
+    Route::get('repairs/{id}','RepairsController@get_download')->name('get_download');
     
 });

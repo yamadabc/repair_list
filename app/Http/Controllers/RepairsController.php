@@ -8,7 +8,7 @@ use DB;
 use App\Repair;
 use App\Property;
 use Carbon\Carbon;
-
+use Response;
 class RepairsController extends Controller
 {
     
@@ -32,7 +32,7 @@ class RepairsController extends Controller
         ]);
 
         if($file = $request -> file){
-            $name = $file -> getClientOriginalExtension();;
+            $name = $file -> getClientOriginalname();;
             $target_path = public_path('/pdf_file/');
             $file->move($target_path,$name);
         }else{
@@ -61,5 +61,12 @@ class RepairsController extends Controller
             $repair->approved_date = $approved_date;
             $repair->save();
         return back();
+    }
+
+    public function get_download($id)
+    {
+        $pdf_filename = Repair::find($id)->pdf_filename;
+        $path_to_file = public_path('/pdf_file/').'/'.$pdf_filename;
+        return Response::download($path_to_file);
     }
 }

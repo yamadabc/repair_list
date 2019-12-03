@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @hasSection('title')
+    <title>@yield('title')</title>
+    @else
+    <title>修繕承認管理</title>
+    @endif
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

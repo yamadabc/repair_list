@@ -32,7 +32,9 @@
                     </td>
                     <td>{{ $repair -> construction_name }}</td>
                     <td>{{ $repair -> construction_price }}</td>
-                    <td></td>
+                    <td>@if($repair -> pdf_filename)
+                            {!! link_to_route('get_download',$repair -> pdf_filename ,['id' => $repair ->id ]) !!}</td>
+                        @endif
                     <td>@if(Auth::user()->depart == '代表取締役')
                             @if($repair -> is_approved == false)
                                 {!! Form::open(['route'=>['approval.store',$repair->id]]) !!}
