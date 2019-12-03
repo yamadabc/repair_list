@@ -17,11 +17,26 @@
                 </tr>
                 @foreach($repairs as $repair)
                 <tr>
-                    <td></td>
+                    <td>
+                        @if($repair -> is_approved == false)
+                            <div style="background:red;">
+                            <div style="color:white;">
+                            未承認</div></div>
+
+                        @else
+                            <div style="background:blue;">
+                            <div style="color:white;">
+                            承認済</div></div>
+                        @endif
+                    </td>
                     <td>{{ $repair -> construction_name }}</td>
                     <td>{{ $repair -> construction_price }}</td>
                     <td>@if(Auth::user()->depart == '代表取締役')
-                        承認する
+                            @if($repair -> is_approved == false)
+                                {!! Form::open(['route'=>['approval.store',$repair->id]]) !!}
+                                    {!! Form::submit('承認する',['class'=>'btn btn-success']) !!}
+                                {!! Form::close() !!}
+                            @endif
                         @endif
                     </td>
                 </tr>

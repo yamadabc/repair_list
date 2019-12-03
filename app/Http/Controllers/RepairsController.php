@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Repair;
 use App\Property;
+use Carbon\Carbon;
+
 class RepairsController extends Controller
 {
     
@@ -30,6 +32,7 @@ class RepairsController extends Controller
             $repair = $property -> repairs() -> create([
             'construction_name' => $request->input('construction_name'),
             'construction_price' => $request->input('construction_price'),
+            
             ]);
                 
         
@@ -37,5 +40,15 @@ class RepairsController extends Controller
         return redirect()->route('owned_properties.show',[$id]);
 
         
+    }
+
+    public function approval_store($id)
+    {   
+        $repair = Repair::find($id);
+        $approved_date = Carbon::now();
+            $repair->is_approved = True;
+            $repair->approved_date = $approved_date;
+            $repair->save();
+        return back();
     }
 }
