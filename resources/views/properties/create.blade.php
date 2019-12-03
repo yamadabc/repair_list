@@ -2,11 +2,13 @@
 
 @section('content')
 
+@section('title')物件登録@endsection
+
 <div class='container'>
     <div class='row'>
         <div class='col-md-8 offset-md-2'>
-            <h2>物件入力</h2>
-            {!! Form::open(['route'=>'repairs.store']) !!}
+            <h2>物件登録</h2>
+            {!! Form::open(['route'=>'owned_properties.store']) !!}
             @csrf
             <div class='form-group'>
             

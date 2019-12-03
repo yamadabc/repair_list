@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+@section('title')物件一覧@endsection
 <div class='container'>
     
         <h2>所有物件一覧</h2>

@@ -2,6 +2,8 @@
 
 @section('content')
 
+@section('title')修繕一覧@endsection
+
 <div class='conteiner'>
     <div clas='row'>
         <div class='col-md-8 offset-md-2'>
