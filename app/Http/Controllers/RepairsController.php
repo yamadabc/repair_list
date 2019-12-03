@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Repair;
@@ -24,14 +25,24 @@ class RepairsController extends Controller
 
     public function repair_store(Request $request,$id)
     {  
-        $this->validate($request,[
-            'construction_name'=>'required|string|max:200',
+        $request->validate([
+            'construction_name'=>'bail|required|string|max:200',
             'construction_price'=>'required|numeric',
+            'file'=>'file|mimes:pdf|max:2048',
         ]);
+
+        if($file = $request -> file){
+            $name = $file -> getClientOriginalExtension();;
+            $target_path = public_path('/pdf_file/');
+            $file->move($target_path,$name);
+        }else{
+            $name = "";
+        }
             $property = Property::find($id);
             $repair = $property -> repairs() -> create([
             'construction_name' => $request->input('construction_name'),
             'construction_price' => $request->input('construction_price'),
+            'pdf_filename' => $name,
             
             ]);
                 

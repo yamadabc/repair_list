@@ -13,6 +13,7 @@
                     <th>ステータス</th>
                     <th>修繕名</th>
                     <th>金額</th>
+                    <th>PDFファイル</th>
                     <th>承認</th>
                 </tr>
                 @foreach($repairs as $repair)
@@ -31,6 +32,7 @@
                     </td>
                     <td>{{ $repair -> construction_name }}</td>
                     <td>{{ $repair -> construction_price }}</td>
+                    <td></td>
                     <td>@if(Auth::user()->depart == '代表取締役')
                             @if($repair -> is_approved == false)
                                 {!! Form::open(['route'=>['approval.store',$repair->id]]) !!}
