@@ -58,12 +58,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('owned_properties.create') }}">物件登録</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" role="button">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                
-                            </li>
+                            
                             <li class='nav-item'>
                                 <a class="nav-link" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
